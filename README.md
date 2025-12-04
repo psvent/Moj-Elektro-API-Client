@@ -7,26 +7,13 @@ API docs: https://docs.informatika.si/mojelektro/api/
 ## Quickstart
 
 ```bash
+git clone git@github.com:psvent/Moj-Elektro-API-Client.git
+cd Moj-Elektro-API-Client
 python3 -m venv .venv
 source .venv/bin/activate
 cp .env.example .env  # fill in X_API_TOKEN and IDs
 pip install -e .[dev]
 python examples/meter_readings.py
-```
-
-Or use this client in a new project:
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install mojelektro
-```
-
-```python
-from mojelektro import Config, MojElektroClient
-
-client = MojElektroClient(Config(api_token="your-token"))
-print(client.get_reading_types()[:1])
 ```
 
 ## Installation
