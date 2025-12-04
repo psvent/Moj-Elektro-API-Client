@@ -1,0 +1,24 @@
+# Virtual environments
+.venv/
+
+# Python caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+.mypy_cache/
+.pytest_cache/
+
+# Environment files
+.env
+.env.example
+AGENTS.md
+.editorconfig
+
+# Build artifacts
+build/
+dist/
+mojelektro.egg-info/
+
+# Local demos / caches
+.venv/
+.pytest_cache/

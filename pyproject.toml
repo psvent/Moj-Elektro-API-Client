@@ -1,0 +1,32 @@
+[project]
+name = "mojelektro"
+version = "0.1.0"
+description = "Typed Python client for the Moj Elektro REST API."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Primoz Svent", email = "me@primozsvent.com" }]
+dependencies = [
+    "httpx>=0.27.0,<1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2",
+    "pytest-asyncio>=0.23",
+]
+
+[project.urls]
+Homepage = "https://docs.informatika.si/mojelektro/api/"
+Repository = "https://github.com/psvent/Moj-Elektro-API-Client"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["tests", "examples"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
