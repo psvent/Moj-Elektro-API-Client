@@ -1,0 +1,24 @@
+#!/bin/sh
+# Run test suite before allowing a push.
+
+set -euo pipefail
+
+PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$PROJECT_ROOT"
+
+if command -v python3 >/dev/null 2>&1; then
+    PYTHON="python3"
+elif command -v python >/dev/null 2>&1; then
+    PYTHON="python"
+else
+    echo "No python interpreter found; cannot run tests." >&2
+    exit 1
+fi
+
+echo "Running tests (pytest) before push..."
+if ! "$PYTHON" -m pytest; then
+    echo "Tests failed. Push aborted." >&2
+    exit 1
+fi
+
+echo "Tests passed. Proceeding with push."
