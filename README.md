@@ -93,9 +93,9 @@ export GSRN_MT=your-gsrn
 python -m pytest tests/test_integration_merilna_tocka.py
 ```
 
-### Git hook: run tests before push
+### Git hooks: run tests before commit/push
 
-Enable the shared hook so pushes only proceed when pytest passes:
+Enable the shared hooks once per clone to block commits (and pushes) when pytest fails (uses `python3`/`python` on your PATH, so activate your venv first):
 
 ```bash
 git config core.hooksPath .githooks

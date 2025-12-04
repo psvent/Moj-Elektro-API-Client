@@ -1,3 +1,5 @@
+from collections.abc import Callable
+
 import httpx
 import pytest
 
@@ -8,9 +10,10 @@ from mojelektro import (
     NotFoundError,
     ResponseDecodingError,
 )
+from mojelektro.client import MojElektroClient
 
 
-def test_bad_request_error_includes_payload(client_factory) -> None:
+def test_bad_request_error_includes_payload(client_factory: Callable[..., MojElektroClient]) -> None:
     def handler(request: httpx.Request) -> httpx.Response:
         return httpx.Response(400, json={"koda": "E.7.155", "opis": "invalid"})
 
@@ -23,7 +26,7 @@ def test_bad_request_error_includes_payload(client_factory) -> None:
     assert exc.value.error == {"koda": "E.7.155", "opis": "invalid"}
 
 
-def test_auth_errors_are_mapped(client_factory) -> None:
+def test_auth_errors_are_mapped(client_factory: Callable[..., MojElektroClient]) -> None:
     def handler(request: httpx.Request) -> httpx.Response:
         return httpx.Response(401, json={"opis": "missing token"})
 
@@ -39,7 +42,7 @@ def test_auth_errors_are_mapped(client_factory) -> None:
         client.get_merilna_tocka("gsrn-1")
 
 
-def test_not_found_and_decoding_errors(client_factory) -> None:
+def test_not_found_and_decoding_errors(client_factory: Callable[..., MojElektroClient]) -> None:
     def handler(request: httpx.Request) -> httpx.Response:
         return httpx.Response(404, json={"opis": "not found"})
 
@@ -53,7 +56,3 @@ def test_not_found_and_decoding_errors(client_factory) -> None:
     client = client_factory(invalid_json)
     with pytest.raises(ResponseDecodingError):
         client.get_reading_types()
-
-
-
-**
