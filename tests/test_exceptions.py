@@ -56,3 +56,4 @@ def test_not_found_and_decoding_errors(client_factory: Callable[..., MojElektroC
     client = client_factory(invalid_json)
     with pytest.raises(ResponseDecodingError):
         client.get_reading_types()
+        

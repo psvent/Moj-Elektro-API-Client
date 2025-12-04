@@ -82,16 +82,7 @@ source .venv/bin/activate
 python -m pytest
 ```
 
-Tests run against mocked HTTP responses; no real API calls are made. Integration tests can reuse the `.env` values above.
-
-To exercise the real API for `get_merilna_tocka`, opt in explicitly and provide live credentials:
-
-```bash
-export RUN_INTEGRATION_TESTS=1
-export X_API_TOKEN=your-token
-export GSRN_MT=your-gsrn
-python -m pytest tests/test_integration_merilna_tocka.py
-```
+Tests run against mocked HTTP responses; no real API calls are made.
 
 ### Git hooks: run tests before commit/push
 
